@@ -1,5 +1,5 @@
 ````md
-# 🤖 RAG Document Intelligence Platform
+## 🤖 RAG Document Intelligence Platform
 
 Ask questions about PDFs and documents using AI.
 
@@ -47,11 +47,11 @@ LLM Generates Answer
 
 This architecture is called:
 
-## Retrieval Augmented Generation (RAG)
+### Retrieval Augmented Generation (RAG)
 
 ---
 
-# 📁 Project Structure
+## 📁 Project Structure
 
 ```text
 rag-platform/
@@ -68,7 +68,7 @@ rag-platform/
 
 ---
 
-# ⚙️ Tech Stack
+## ⚙️ Tech Stack
 
 | Component        | Technology     |
 | ---------------- | -------------- |
@@ -81,7 +81,7 @@ rag-platform/
 
 ---
 
-# 🔑 Environment Variables
+## 🔑 Environment Variables
 
 Create `.env`
 ```env
@@ -89,7 +89,7 @@ GROQ_API_KEY=your_groq_api_key
 ``````
 ---
 
-# 🛠 Local Setup
+## 🛠 Local Setup
 
 ## 1. Clone Repo
 
@@ -134,7 +134,7 @@ uvicorn main:app --reload
 
 ---
 
-# 🐳 Docker Setup
+## 🐳 Docker Setup
 
 ## Build and Run
 
@@ -144,7 +144,7 @@ docker-compose up --build
 
 ---
 
-# 📌 API Endpoints
+## 📌 API Endpoints
 
 | Endpoint  | Method | Description     |
 | --------- | ------ | --------------- |
@@ -154,7 +154,7 @@ docker-compose up --build
 | `/ask`    | POST   | Ask questions   |
 
 ---
-# 🌐 Live Deployment
+## 🌐 Live Deployment
 
 API URL:
 
@@ -170,7 +170,7 @@ https://rag-platform-gbv3.onrender.com/docs
 
 ---
 
-# 🧪 Example Question
+## 🧪 Example Question
 
 ```json
 {
@@ -180,7 +180,7 @@ https://rag-platform-gbv3.onrender.com/docs
 
 ---
 
-# 📦 Example Response
+## 📦 Example Response
 
 ```json
 {
@@ -191,7 +191,7 @@ https://rag-platform-gbv3.onrender.com/docs
 
 ---
 
-# 🐛 Common Errors
+## 🐛 Common Errors
 
 | Error                | Fix                               |
 | -------------------- | --------------------------------- |
@@ -202,7 +202,7 @@ https://rag-platform-gbv3.onrender.com/docs
 
 ---
 
-# 🔒 Security
+## 🔒 Security
 
 Never upload:
 
@@ -213,7 +213,7 @@ Never upload:
 Use `.gitignore`.
 
 ---
-# 📸 Screenshots
+## 📸 Screenshots
 
 ## Swagger API Documentation
 
@@ -233,12 +233,12 @@ Use `.gitignore`.
 ---
 
 
-# 📌 Disclaimer
+## 📌 Disclaimer
 
 This is a personal educational project built for learning and portfolio purposes.
 
 ---
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 Santhosh
 
