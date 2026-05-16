@@ -1,4 +1,3 @@
-````md
 # 🤖 RAG Document Intelligence Platform
 
 Ask questions about PDFs and documents using AI using Retrieval Augmented Generation (RAG).
@@ -45,7 +44,6 @@ Ask Question
 Retrieve Relevant Chunks
        ↓
 LLM Generates Answer
-````
 
 This architecture is called:
 
