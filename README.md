@@ -94,8 +94,8 @@ GROQ_API_KEY=your_groq_api_key
 ## 1. Clone Repo
 
 ```bash
-git clone YOUR_GITHUB_REPO_URL
-cd rag-platform
+git clone https://github.com/JavSanthosh/rag-document-intelligence-platform
+cd rag-document-intelligence-platform
 ```
 
 ---
