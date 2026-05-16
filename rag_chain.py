@@ -59,6 +59,7 @@ class RAGChain:
 
         # Store all chunks in ChromaDB (each chunk gets embedded automatically)
         self.vectorstore.add_documents(chunks)
+        self.vectorstore.persist()
 
         print(f"✅ Stored {len(chunks)} chunks in ChromaDB")
         return len(chunks)
