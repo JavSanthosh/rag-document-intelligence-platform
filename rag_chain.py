@@ -57,6 +57,12 @@ class RAGChain:
         # Split into chunks
         chunks = self.text_splitter.split_documents(documents)
 
+        if not chunks:
+            raise ValueError("No text chunks were created from the document.")
+
+        # Remove empty chunks
+        chunks = [chunk for chunk in chunks if chunk.page_content.strip()]
+
         # Store all chunks in ChromaDB (each chunk gets embedded automatically)
         self.vectorstore.add_documents(chunks)
         self.vectorstore.persist()
