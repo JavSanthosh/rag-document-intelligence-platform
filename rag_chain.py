@@ -7,7 +7,7 @@ from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_groq import ChatGroq
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 import os
@@ -15,9 +15,8 @@ import os
 class RAGChain:
     def __init__(self):
         # Step 1: Embeddings = converts text into numbers (vectors) so we can do similarity search
-        self.embeddings = HuggingFaceEmbeddings(
-            model_name="BAAI/bge-small-en-v1.5"
-        )
+        self.embeddings = FastEmbedEmbeddings()
+        
 
         self.llm = ChatGroq(
             model_name="llama-3.1-8b-instant",
