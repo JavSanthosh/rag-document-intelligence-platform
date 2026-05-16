@@ -1,7 +1,7 @@
 ````md
-## 🤖 RAG Document Intelligence Platform
+# 🤖 RAG Document Intelligence Platform
 
-Ask questions about PDFs and documents using AI.
+Ask questions about PDFs and documents using AI using Retrieval Augmented Generation (RAG).
 
 Built with:
 - FastAPI
@@ -10,22 +10,24 @@ Built with:
 - Groq Llama 3.1 8B Instant
 - FastEmbed
 - Docker
+- Render
 
 ---
 
-# 🚀 Features
+## 🚀 Features
 
 ✅ Upload PDF or TXT documents  
 ✅ Automatic document chunking  
-✅ Lightweight vector embeddings using FastEmbed
+✅ Lightweight vector embeddings using FastEmbed  
 ✅ Semantic search using ChromaDB  
-✅ AI-powered question answering using Groq Llama 3.1 8B Instant
+✅ AI-powered question answering using Groq Llama 3.1 8B Instant  
 ✅ REST API with FastAPI  
 ✅ Dockerized setup  
+✅ Cloud deployment using Render  
 
 ---
 
-# 🧠 How It Works
+## 🧠 How It Works
 
 ```text
 Upload Document
@@ -54,7 +56,7 @@ This architecture is called:
 ## 📁 Project Structure
 
 ```text
-rag-platform/
+rag-document-intelligence-platform/
 │
 ├── main.py
 ├── rag_chain.py
@@ -63,6 +65,10 @@ rag-platform/
 ├── docker-compose.yml
 ├── .gitignore
 ├── README.md
+├── screenshots/
+│   ├── swagger.png
+│   ├── upload.png
+│   └── ask.png
 └── chroma_db/
 ```
 
@@ -70,55 +76,61 @@ rag-platform/
 
 ## ⚙️ Tech Stack
 
-| Component        | Technology     |
-| ---------------- | -------------- |
-| Backend API      | FastAPI        |
-| LLM              | Groq Llama     |
-| Embeddings       | FastEmbed      |
-| Vector Database  | ChromaDB       |
-| Framework        | LangChain      |
-| Containerization | Docker         |
+| Component        | Technology                |
+| ---------------- | ------------------------- |
+| Backend API      | FastAPI                   |
+| LLM              | Groq Llama 3.1 8B Instant |
+| Embeddings       | FastEmbed                 |
+| Vector Database  | ChromaDB                  |
+| Framework        | LangChain                 |
+| Containerization | Docker                    |
+| Deployment       | Render                    |
 
 ---
 
 ## 🔑 Environment Variables
 
-Create `.env`
+Create a `.env` file:
+
 ```env
 GROQ_API_KEY=your_groq_api_key
-``````
+```
+
 ---
 
 ## 🛠 Local Setup
 
-## 1. Clone Repo
+### 1. Clone Repository
 
 ```bash
-git clone https://github.com/JavSanthosh/rag-document-intelligence-platform
+git clone https://github.com/JavSanthosh/rag-document-intelligence-platform.git
+
 cd rag-document-intelligence-platform
 ```
 
 ---
 
-## 2. Create Virtual Environment
+### 2. Create Virtual Environment
 
-### Windows
+#### Windows
 
 ```bash
 py -3.11 -m venv venv
+
 venv\Scripts\activate
 ```
 
-### Mac/Linux
+#### Mac/Linux
 
 ```bash
 python3 -m venv venv
+
 source venv/bin/activate
 ```
 
 ---
 
-## 3. Install Dependencies
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -126,17 +138,29 @@ pip install -r requirements.txt
 
 ---
 
-## 4. Run Application
+### 4. Run Application
 
 ```bash
 uvicorn main:app --reload
+```
+
+Application runs at:
+
+```text
+http://localhost:8000
+```
+
+Swagger Docs:
+
+```text
+http://localhost:8000/docs
 ```
 
 ---
 
 ## 🐳 Docker Setup
 
-## Build and Run
+### Build and Run
 
 ```bash
 docker-compose up --build
@@ -154,15 +178,16 @@ docker-compose up --build
 | `/ask`    | POST   | Ask questions   |
 
 ---
+
 ## 🌐 Live Deployment
 
-API URL:
+### API URL
 
 ```text
 https://rag-platform-gbv3.onrender.com/
 ```
 
-Swagger Docs:
+### Swagger Documentation
 
 ```text
 https://rag-platform-gbv3.onrender.com/docs
@@ -191,6 +216,26 @@ https://rag-platform-gbv3.onrender.com/docs
 
 ---
 
+## 📸 Screenshots
+
+### Swagger API Documentation
+
+![Swagger Docs](screenshots/swagger.png)
+
+---
+
+### Document Upload
+
+![Upload](screenshots/upload.png)
+
+---
+
+### AI Question Answering
+
+![Ask](screenshots/ask.png)
+
+---
+
 ## 🐛 Common Errors
 
 | Error                | Fix                               |
@@ -210,35 +255,19 @@ Never upload:
 * API keys
 * secrets
 
-Use `.gitignore`.
+Use `.gitignore` properly.
 
 ---
-## 📸 Screenshots
-
-## Swagger API Documentation
-
-![Swagger Docs](screenshots/swagger.png)
-
----
-
-## Document Upload
-
-![Upload](screenshots/upload.png)
-
----
-
-## AI Question Answering
-
-![Ask](screenshots/ask.png)
----
-
 
 ## 📌 Disclaimer
 
-This is a personal educational project built for learning and portfolio purposes.
+This is a personal educational and portfolio project built for learning purposes.
 
 ---
 
 ## 👨‍💻 Author
+
 Santhosh
 
+```
+```
