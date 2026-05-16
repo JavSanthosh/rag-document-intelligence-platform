@@ -7,8 +7,8 @@ Built with:
 - FastAPI
 - LangChain
 - ChromaDB
-- Groq
-- HuggingFace Embeddings
+- Groq Llama 3.1 8B Instant
+- FastEmbed
 - Docker
 
 ---
@@ -17,9 +17,9 @@ Built with:
 
 ✅ Upload PDF or TXT documents  
 ✅ Automatic document chunking  
-✅ Vector embeddings using HuggingFace  
+✅ Lightweight vector embeddings using FastEmbed
 ✅ Semantic search using ChromaDB  
-✅ AI-powered question answering using Groq Llama 3.1  
+✅ AI-powered question answering using Groq Llama 3.1 8B Instant Llama 3.1  
 ✅ REST API with FastAPI  
 ✅ Dockerized setup  
 
@@ -73,8 +73,8 @@ rag-platform/
 | Component        | Technology     |
 | ---------------- | -------------- |
 | Backend API      | FastAPI        |
-| LLM              | Groq Llama 3.1 |
-| Embeddings       | HuggingFace    |
+| LLM              | Groq Llama 3.1 8B Instant Llama 3.1 |
+| Embeddings       | FastEmbed    |
 | Vector Database  | ChromaDB       |
 | Framework        | LangChain      |
 | Containerization | Docker         |
@@ -86,7 +86,7 @@ rag-platform/
 Create `.env`
 
 ```env
-GROQ_API_KEY=your_groq_api_key
+Groq Llama 3.1 8B Instant_API_KEY=your_Groq Llama 3.1 8B Instant_api_key
 ```
 
 ---
@@ -159,10 +159,18 @@ docker-compose up --build
 
 # 📄 Swagger API Docs
 
-Open:
+# 🌐 Live Deployment
+
+API URL:
 
 ```text
-http://localhost:8000/docs
+https://rag-platform-gbv3.onrender.com/
+```
+
+Swagger Docs:
+
+```text
+https://rag-platform-gbv3.onrender.com//docs
 ```
 
 ---
@@ -210,6 +218,26 @@ Never upload:
 Use `.gitignore`.
 
 ---
+# 📸 Screenshots
+
+## Swagger API Documentation
+
+![Swagger Docs](screenshots/Swagger URL.png)
+
+---
+
+## Document Upload
+
+![Upload](screenshots/Upload Doc.png)
+
+---
+
+## AI Question Answering
+
+![Ask](screenshots/Ask.png)
+
+---
+
 
 # 📌 Disclaimer
 
