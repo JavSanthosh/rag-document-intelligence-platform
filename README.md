@@ -266,5 +266,3 @@ This is a personal educational and portfolio project built for learning purposes
 ## 👨‍💻 Author
 
 Santhosh
-```
-```
