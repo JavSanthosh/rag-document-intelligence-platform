@@ -238,37 +238,25 @@ docker-compose up --build
 
 ---
 
-## 📸 Screenshots
-
----
-
 ### Swagger API Documentation
 
-![Swagger Docs](screenshots/swagger.png)
-
----
+![Swagger Docs](screenshots/swagger.jpeg)
 
 ### Document Upload
 
-![Upload](screenshots/upload.png)
-
----
+![Upload](screenshots/upload.jpeg)
 
 ### AI Question Answering
 
-![Ask](screenshots/ask.png)
-
----
+![Ask](screenshots/ask.jpeg)
 
 ### Docker Container Running
 
-![Docker](screenshots/docker.png)
-
----
+![Docker](screenshots/docker.jpeg)
 
 ### AWS EC2 Deployment
 
-![AWS EC2](screenshots/aws-ec2.png)
+![AWS EC2](screenshots/awsec2.jpeg)
 
 ## 🔒 Security
 
