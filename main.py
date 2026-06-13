@@ -1,7 +1,4 @@
 # main.py
-# This is the API layer - users interact with the project through these endpoints
-# Think of endpoints like buttons: /upload = upload a doc, /ask = ask a question
-
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -14,8 +11,8 @@ import uuid
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Multi-Agent RAG Document Intelligence Platform",
-    description="Upload documents and ask questions using AI",
+    title="RAG Document Intelligence Platform",
+    description="Upload documents, perform semantic retrieval, and generate answers using a RAG pipeline powered by Groq and ChromaDB.",
     version="1.0.0"
 )
 
@@ -27,7 +24,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize our RAG chain (this loads ChromaDB and connects to OpenAI)
+# Initialize our RAG chain (loads ChromaDB and connects to Groq LLM)
 rag = RAGChain()
 
 # ── Request/Response Models ──────────────────────────────────────
@@ -54,8 +51,13 @@ def root():
 
 @app.get("/health")
 def health_check():
-    """Health check - recruiters/interviewers love seeing this"""
-    return {"status": "healthy", "service": "RAG Platform"}
+    """Health check"""
+    return {
+    "status": "healthy",
+    "service": "RAG Platform",
+    "vector_db": "ChromaDB",
+    "llm": "Groq Llama 3.1 8B"
+    }
 
 @app.post("/upload")
 async def upload_document(file: UploadFile = File(...)):
