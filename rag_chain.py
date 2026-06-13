@@ -1,7 +1,4 @@
 # rag_chain.py
-# This file contains ALL the RAG logic
-# RAG = Retrieval Augmented Generation
-# Simple explanation: Upload doc → store it → user asks question → find relevant parts → LLM answers
 
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -12,28 +9,28 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 import os
 
+
 class RAGChain:
     def __init__(self):
-        # Step 1: Embeddings = converts text into numbers (vectors) so we can do similarity search
-        self.embeddings = FastEmbedEmbeddings()
-        
 
+        # FastEmbed converts document text into vector embeddings for semantic search
+        self.embeddings = FastEmbedEmbeddings()
+
+        # Groq-hosted Llama 3.1 model used for answer generation
         self.llm = ChatGroq(
             model_name="llama-3.1-8b-instant",
             temperature=0,
             groq_api_key=os.getenv("GROQ_API_KEY")
         )
 
-        # Step 3: ChromaDB = vector database (stores embeddings on disk)
+        # ChromaDB stores vector embeddings
         self.vectorstore = Chroma(
-            collection_name="documents",
+            collection_name="rag_documents",
             embedding_function=self.embeddings,
-            persist_directory="./chroma_db"   # saves to this folder
+            persist_directory="./chroma_db"
         )
 
-        # Step 4: Text Splitter = breaks big documents into small chunks
-        # chunk_size=1000 means each chunk is ~1000 characters
-        # chunk_overlap=200 means chunks share 200 chars (so context isn't lost at edges)
+        # Recursive chunking with overlap
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=1000,
             chunk_overlap=200
@@ -41,55 +38,51 @@ class RAGChain:
 
     def ingest_document(self, file_path: str):
         """
-        Takes a document path → loads it → splits into chunks → stores in ChromaDB
-        Returns: number of chunks stored
+        Loads document → chunks text → stores embeddings in ChromaDB
         """
-        # Load the document based on file type
+
         if file_path.endswith(".pdf"):
             loader = PyPDFLoader(file_path)
         else:
             loader = TextLoader(file_path)
 
-        # Load raw text from file
         documents = loader.load()
 
-        # Split into chunks
         chunks = self.text_splitter.split_documents(documents)
 
         if not chunks:
             raise ValueError("No text chunks were created from the document.")
 
-        # Remove empty chunks
-        chunks = [chunk for chunk in chunks if chunk.page_content.strip()]
+        chunks = [
+            chunk
+            for chunk in chunks
+            if chunk.page_content.strip()
+        ]
 
-        # Store all chunks in ChromaDB (each chunk gets embedded automatically)
         self.vectorstore.add_documents(chunks)
-        
 
-        print(f"✅ Stored {len(chunks)} chunks in ChromaDB")
+        print(f"[RAG] Stored {len(chunks)} chunks in ChromaDB")
+
         return len(chunks)
 
     def ask(self, question: str) -> str:
         """
-        Takes a question → finds relevant chunks → sends to LLM → returns answer
+        Retrieves relevant chunks and generates an answer using Groq.
         """
-        # This is our custom prompt template
-        # {context} = the relevant chunks retrieved from ChromaDB
-        # {question} = user's question
-prompt_template = """You are a helpful AI assistant.
 
-Use ONLY the provided context.
+        prompt_template = """
+You are an expert document intelligence assistant.
+
+Use ONLY the provided context to answer.
 
 Instructions:
-- Format the answer clearly.
-- Use headings when needed.
-- Use bullet points.
-- Use numbered lists for steps or strategies.
-- Keep answers structured and readable.
-- Do not write one large paragraph.
-
-If the answer is not in the context, say:
-"I don't have enough information in the document to answer this."
+- Provide concise and accurate answers.
+- Use headings when appropriate.
+- Use bullet points for lists.
+- Use numbered steps for processes.
+- Do not make up information.
+- If the answer is not found in the context, say:
+  "I don't have enough information in the document to answer this."
 
 Context:
 {context}
@@ -105,16 +98,16 @@ Answer:
             input_variables=["context", "question"]
         )
 
-        # RetrievalQA chain = retrieves chunks + sends to LLM automatically
         qa_chain = RetrievalQA.from_chain_type(
             llm=self.llm,
-            chain_type="stuff",   # "stuff" = put all chunks into one prompt
+            chain_type="stuff",
             retriever=self.vectorstore.as_retriever(
-                search_kwargs={"k": 3}  # retrieve top 3 most relevant chunks
+                search_kwargs={"k": 5}
             ),
             chain_type_kwargs={"prompt": PROMPT},
             return_source_documents=True
         )
 
         result = qa_chain.invoke({"query": question})
+
         return result["result"]
