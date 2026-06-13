@@ -1,28 +1,49 @@
 # 🤖 RAG Document Intelligence Platform
 
-Ask questions about PDFs and documents using AI using Retrieval Augmented Generation (RAG).
+A production-ready Retrieval-Augmented Generation (RAG) platform that enables users to upload PDF/TXT documents, perform semantic retrieval using vector embeddings, and generate context-aware answers using Groq Llama 3.1.
 
 Built with:
-- FastAPI
-- LangChain
-- ChromaDB
-- Groq Llama 3.1 8B Instant
-- FastEmbed
-- Docker
-- Render
+
+* FastAPI
+* LangChain
+* ChromaDB
+* Groq Llama 3.1 8B Instant
+* FastEmbed
+* Docker
+* AWS EC2
 
 ---
 
 ## 🚀 Features
 
-✅ Upload PDF or TXT documents  
-✅ Automatic document chunking  
-✅ Lightweight vector embeddings using FastEmbed  
-✅ Semantic search using ChromaDB  
-✅ AI-powered question answering using Groq Llama 3.1 8B Instant  
-✅ REST API with FastAPI  
-✅ Dockerized setup  
-✅ Cloud deployment using Render  
+✅ Upload PDF or TXT documents
+
+✅ Automatic document chunking
+
+✅ Lightweight vector embeddings using FastEmbed
+
+✅ Semantic search using ChromaDB
+
+✅ AI-powered question answering using Groq Llama 3.1 8B Instant
+
+✅ REST API with FastAPI
+
+✅ Dockerized deployment
+
+✅ AWS EC2 hosting
+
+---
+
+## 🎯 Key Highlights
+
+* Recursive Chunking (1000 size / 200 overlap)
+* FastEmbed Embeddings
+* ChromaDB Vector Database
+* Top-K Semantic Retrieval
+* Groq Llama 3.1 Integration
+* Dockerized Deployment
+* AWS EC2 Hosting
+* Health Monitoring Endpoint
 
 ---
 
@@ -43,11 +64,40 @@ Ask Question
        ↓
 Retrieve Relevant Chunks
        ↓
-LLM Generates Answer
+Groq Llama 3.1
+       ↓
+Generate Answer
+```
 
-This architecture is called:
+### Retrieval-Augmented Generation (RAG)
 
-### Retrieval Augmented Generation (RAG)
+The platform combines semantic retrieval with large language models to generate accurate, context-aware answers grounded in uploaded documents.
+
+---
+
+## ☁️ Deployment
+
+The application is containerized using Docker and deployed on AWS EC2.
+
+Deployment Stack:
+
+* AWS EC2 (Ubuntu)
+* Docker
+* FastAPI
+* ChromaDB
+* Groq Llama 3.1
+
+Deployment Workflow:
+
+```text
+GitHub
+  ↓
+AWS EC2
+  ↓
+Docker Container
+  ↓
+FastAPI Service
+```
 
 ---
 
@@ -82,7 +132,7 @@ rag-document-intelligence-platform/
 | Vector Database  | ChromaDB                  |
 | Framework        | LangChain                 |
 | Containerization | Docker                    |
-| Deployment       | Render                    |
+| Deployment       | AWS EC2                   |
 
 ---
 
@@ -98,7 +148,7 @@ GROQ_API_KEY=your_groq_api_key
 
 ## 🛠 Local Setup
 
-### 1. Clone Repository
+### Clone Repository
 
 ```bash
 git clone https://github.com/JavSanthosh/rag-document-intelligence-platform.git
@@ -106,43 +156,35 @@ git clone https://github.com/JavSanthosh/rag-document-intelligence-platform.git
 cd rag-document-intelligence-platform
 ```
 
----
-
-### 2. Create Virtual Environment
+### Create Virtual Environment
 
 #### Windows
 
 ```bash
 py -3.11 -m venv venv
-
 venv\Scripts\activate
 ```
 
-#### Mac/Linux
+#### Linux / Mac
 
 ```bash
 python3 -m venv venv
-
 source venv/bin/activate
 ```
 
----
-
-### 3. Install Dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-### 4. Run Application
+### Run Application
 
 ```bash
 uvicorn main:app --reload
 ```
 
-Application runs at:
+Application:
 
 ```text
 http://localhost:8000
@@ -158,8 +200,6 @@ http://localhost:8000/docs
 
 ## 🐳 Docker Setup
 
-### Build and Run
-
 ```bash
 docker-compose up --build
 ```
@@ -168,32 +208,16 @@ docker-compose up --build
 
 ## 📌 API Endpoints
 
-| Endpoint  | Method | Description     |
-| --------- | ------ | --------------- |
-| `/`       | GET    | API status      |
-| `/health` | GET    | Health check    |
-| `/upload` | POST   | Upload document |
-| `/ask`    | POST   | Ask questions   |
+| Endpoint | Method | Description     |
+| -------- | ------ | --------------- |
+| /        | GET    | API status      |
+| /health  | GET    | Health check    |
+| /upload  | POST   | Upload document |
+| /ask     | POST   | Ask questions   |
 
 ---
 
-## 🌐 Live Deployment
-
-### API URL
-
-```text
-https://rag-platform-gbv3.onrender.com/
-```
-
-### Swagger Documentation
-
-```text
-https://rag-platform-gbv3.onrender.com/docs
-```
-
----
-
-## 🧪 Example Question
+## 🧪 Example Request
 
 ```json
 {
@@ -220,13 +244,9 @@ https://rag-platform-gbv3.onrender.com/docs
 
 ![Swagger Docs](screenshots/swagger.png)
 
----
-
 ### Document Upload
 
 ![Upload](screenshots/upload.png)
-
----
 
 ### AI Question Answering
 
@@ -234,24 +254,14 @@ https://rag-platform-gbv3.onrender.com/docs
 
 ---
 
-## 🐛 Common Errors
-
-| Error                | Fix                               |
-| -------------------- | --------------------------------- |
-| Missing dependencies | `pip install -r requirements.txt` |
-| Invalid API key      | Check `.env`                      |
-| Port already in use  | Change port                       |
-| ChromaDB issues      | Delete `chroma_db/`               |
-
----
-
 ## 🔒 Security
 
-Never upload:
+Never commit:
 
-* `.env`
-* API keys
-* secrets
+* .env
+* API Keys
+* Secrets
+* Credentials
 
 Use `.gitignore` properly.
 
@@ -259,7 +269,7 @@ Use `.gitignore` properly.
 
 ## 📌 Disclaimer
 
-This is a personal educational and portfolio project built for learning purposes.
+This project was built for learning, experimentation, and portfolio purposes.
 
 ---
 
