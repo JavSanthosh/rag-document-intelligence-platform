@@ -238,10 +238,10 @@ docker-compose up --build
 
 ---
 
-### Swagger API Documentation
+### RAG Architecture
 ![RAG Architecture](screenshots/architecture.png)
 
-
+### Swagger API Documentation
 ![Swagger Docs](screenshots/swagger.jpeg)
 
 ### Document Upload
