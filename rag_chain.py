@@ -76,16 +76,29 @@ class RAGChain:
         # This is our custom prompt template
         # {context} = the relevant chunks retrieved from ChromaDB
         # {question} = user's question
-        prompt_template = """You are a helpful AI assistant. 
-Use ONLY the following context to answer the question accurately.
-If the answer is not in the context, say "I don't have enough information in the document to answer this."
+prompt_template = """You are a helpful AI assistant.
+
+Use ONLY the provided context.
+
+Instructions:
+- Format the answer clearly.
+- Use headings when needed.
+- Use bullet points.
+- Use numbered lists for steps or strategies.
+- Keep answers structured and readable.
+- Do not write one large paragraph.
+
+If the answer is not in the context, say:
+"I don't have enough information in the document to answer this."
 
 Context:
 {context}
 
-Question: {question}
+Question:
+{question}
 
-Answer:"""
+Answer:
+"""
 
         PROMPT = PromptTemplate(
             template=prompt_template,
